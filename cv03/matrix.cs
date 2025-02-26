@@ -64,6 +64,8 @@ internal class Matrix
         return new Matrix(resultMatrix);
     }
 
+
+
     public override string ToString()
     {
         int row_num = matrix.GetLength(0);
