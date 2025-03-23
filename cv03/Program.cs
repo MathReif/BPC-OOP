@@ -20,8 +20,13 @@ var myArray4 = new double[3, 2]
             {9, 10},
             {11, 12}
        };
-double[,] xd = { { 1.2 }, { 1.3 } };
+double[,] xd = { { 1.2, 1.5 }, { 1.3, 1.9 } };
+double[,] xd3 = { { 1.2, 1.5 }, { 1.3, 1.9 } };
 
 Matrix xd1 = new Matrix(xd);
+Matrix xd2 = new Matrix(xd3);
 
-Console.WriteLine(xd1.matrix);
+Console.Write(xd1-xd2);
+Console.Write(xd1 + xd2);
+Console.Write(xd1 * xd2);
+Console.Write(xd1 / xd2);
