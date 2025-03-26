@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace cv07
 {
+
     interface I2D
     {
-        public double Plocha();
+        double Plocha();
     }
 }

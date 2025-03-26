@@ -6,23 +6,34 @@ using System.Threading.Tasks;
 
 namespace cv07
 {
-    public class Kruh :Objekt2D
+    public class Kruh : Objekt2D
     {
         public double radius { get; set; }
-        
+        public double Radius
+        {
+            get
+            {
+                return radius;
+            }
+            set
+            {
+                radius = value;
+                this.Area = Plocha();
+            }
+        }
+
         public Kruh(double radius)
         {
             this.radius = radius;
         }
-
         public override double Plocha()
         {
-            return 2*radius*Math.PI;
+            return Math.PI * Radius * Radius;
         }
 
         public override string ToString()
         {
-            return $"{Plocha()}";
+            return $"(Kruh: radius = {Radius} Plocha = {Plocha()})";
         }
     }
 }
