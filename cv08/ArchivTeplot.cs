@@ -95,27 +95,18 @@ namespace cv08
             }
         }
 
-        public void TiskPrumernychMesicnichTeplot(int mesic)
+        public void TiskPrumernychMesicnichTeplot()
         {
-            if (mesic < 1 || mesic > 12)
+            double[] prumerneTeploty = new double[12];
+            int pocetRoku = _archiv.Count;
+
+            for (int mesic = 0; mesic < 12; mesic++)
             {
-                Console.WriteLine("Neplatný měsíc. Zadejte hodnotu mezi 1 a 12.");
-                return;
+                var teploty = _archiv.Values.Select(rt => rt.MesacneTeploty[mesic]).ToList();
+                prumerneTeploty[mesic] = teploty.Average();
             }
 
-            var relevantniTeploty = _archiv.Values
-                .Where(rt => rt.MesacneTeploty.Count >= mesic)
-                .Select(rt => rt.MesacneTeploty[mesic - 1])
-                .ToList();
-
-            if (relevantniTeploty.Count == 0)
-            {
-                Console.WriteLine("Žádná dostupná data pro tento měsíc.");
-                return;
-            }
-
-            double prumer = relevantniTeploty.Average();
-            Console.WriteLine($"Průměrná teplota za měsíc {mesic}: {prumer:F2}°C");
+            Console.WriteLine("Prům.: " + string.Join("; ", prumerneTeploty.Select(t => t.ToString("F1"))));
         }
     }
 }

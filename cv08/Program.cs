@@ -12,7 +12,7 @@ Console.WriteLine("Průměrné roční teploty:");
 archiv.TiskPrumernychRocnichTeplot();
 
 Console.WriteLine("Průměrná teplota za leden:");
-archiv.TiskPrumernychMesicnichTeplot(1);
+archiv.TiskPrumernychMesicnichTeplot();
 
 archiv.Kalibrace(-0.1);
 archiv.Save("teploty_kalibrovane.txt");
