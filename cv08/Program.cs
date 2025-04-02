@@ -3,7 +3,7 @@
 using cv08;
 
 ArchivTeplot archiv = new();
-archiv.Load("C:\\Users\\repas\\OneDrive\\GitHub\\BPC-OOP\\cv08\\xd.txt");
+archiv.Load("D:\\256795\\BPC-OOP\\cv08\\xd.txt");
 
 Console.WriteLine("Všechny teploty:");
 archiv.TiskTeplot();
@@ -11,8 +11,8 @@ archiv.TiskTeplot();
 Console.WriteLine("Průměrné roční teploty:");
 archiv.TiskPrumernychRocnichTeplot();
 
-Console.WriteLine("Průměrná teplota za leden:");
+Console.WriteLine("Průměrná teplota:");
 archiv.TiskPrumernychMesicnichTeplot();
 
 archiv.Kalibrace(-0.1);
-archiv.Save("teploty_kalibrovane.txt");
+archiv.Save("D:\\256795\\BPC-OOP\\cv08\\xd2.txt");

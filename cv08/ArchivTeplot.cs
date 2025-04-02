@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Globalization;
 
 namespace cv08
 {
@@ -27,7 +28,7 @@ namespace cv08
                     {
                         Console.WriteLine($"Chybný formát řádku: {line}");
                         continue;
-                    }
+                    }   
 
                     if (!int.TryParse(parts[0], out int rok))
                     {
@@ -37,7 +38,7 @@ namespace cv08
 
                     try
                     {
-                        var teploty = parts[1].Split(';').Select(t => double.Parse(t.Trim())).ToList();
+                        var teploty = parts[1].Split(';').Select(t => double.Parse(t.Trim(), new CultureInfo("fr-FR"))).ToList();
                         if (teploty.Count != 12)
                         {
                             Console.WriteLine($"Nesprávný počet teplot pro rok {rok}");
@@ -62,7 +63,9 @@ namespace cv08
             using var writer = new StreamWriter(filePath);
             foreach (var rokTeplota in _archiv.Values)
             {
-                writer.WriteLine($"{rokTeplota.Rok}: {string.Join("; ", rokTeplota.MesacneTeploty)}");
+                var formattedTemperatures = string.Join("; ", rokTeplota.MesacneTeploty.Select(t => Math.Round(t, 1).ToString("F1", new CultureInfo("fr-FR"))));
+
+                writer.WriteLine($"{rokTeplota.Rok}: {formattedTemperatures}");
             }
         }
 
@@ -91,7 +94,7 @@ namespace cv08
         {
             foreach (var rokTeplota in _archiv.Values)
             {
-                Console.WriteLine($"{rokTeplota.Rok}: {rokTeplota.PriemRocnaTeplota:F2}°C");
+                Console.WriteLine($"{rokTeplota.Rok}: {rokTeplota.PriemRocnaTeplota.ToString("F2", new CultureInfo("fr-FR"))}°C");
             }
         }
 
@@ -106,7 +109,7 @@ namespace cv08
                 prumerneTeploty[mesic] = teploty.Average();
             }
 
-            Console.WriteLine("Prům.: " + string.Join("; ", prumerneTeploty.Select(t => t.ToString("F1"))));
+            Console.WriteLine("Prům.: " + string.Join("; ", prumerneTeploty.Select(t => t.ToString("F1", new CultureInfo("fr-FR")))));
         }
     }
-}
+    }
