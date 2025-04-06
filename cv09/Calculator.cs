@@ -38,11 +38,24 @@ namespace cv09
         public void Tlacitko(string vstup)
         {
             if (double.TryParse(vstup, out double cislo))
-            {
-                // Znak je číslo nebo desetinná čárka
-                _buffer += vstup;
-                Display = _buffer;
-            }
+{
+    if (_buffer == "0" && vstup != ",")
+    {
+        // Ak je buffer 0 a nepridávam desatinnú čiarku -> prepíš
+        _buffer = vstup;
+    }
+    else if (_buffer == "-0" && vstup != ",")
+    {
+        // Ak je buffer -0 a nepridávam desatinnú čiarku -> prepíš ale nechaj -
+        _buffer = "-" + vstup;
+    }
+    else
+    {
+        _buffer += vstup;
+    }
+
+    Display = _buffer;
+}
             else
             {
                 switch (vstup)
@@ -94,27 +107,28 @@ namespace cv09
                         Display = "0";
                         Pamet = "";
                         break;
-                        case "+/-":
-    if (_stav == Stav.PrvniCislo || _stav == Stav.Operace)
+                    case "+/-":
+                        if (_stav == Stav.PrvniCislo || _stav == Stav.Operace)
                         {
-                            // Ak si v stave Operace a buffer je prázdny, dovoľ užívateľovi zadať záporné číslo
                             if (_buffer == "")
                             {
-                                _buffer = "-";
+                                // Ak je buffer prázdny, nastavíme na "0"
+                                _buffer = "0";
                             }
-                            else if (_buffer[0] == '-')
+
+                            if (_buffer[0] == '-')
                             {
-                                _buffer = _buffer.Substring(1);
+                                _buffer = _buffer.Substring(1); // Odstránime -
                             }
-                            else
+                            else if (_buffer != "0")
                             {
-                                _buffer = "-" + _buffer;
+                                _buffer = "-" + _buffer; // Pridáme -
                             }
+
                             Display = _buffer;
                         }
                         else if (_stav == Stav.Vysledek)
                         {
-                            // Ak je zobrazený výsledok, tak zmeň znamienko výsledku
                             double vysledek = double.Parse(Display);
                             vysledek *= -1;
                             Display = vysledek.ToString();
