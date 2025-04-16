@@ -1,0 +1,6 @@
+﻿INSERT INTO [dbo].[Student_Predmet] ([ID], [Zkratka]) VALUES (1, N'BOOP ')
+INSERT INTO [dbo].[Student_Predmet] ([ID], [Zkratka]) VALUES (1, N'BPC1T')
+INSERT INTO [dbo].[Student_Predmet] ([ID], [Zkratka]) VALUES (2, N'BOOP ')
+INSERT INTO [dbo].[Student_Predmet] ([ID], [Zkratka]) VALUES (3, N'BOOP ')
+INSERT INTO [dbo].[Student_Predmet] ([ID], [Zkratka]) VALUES (4, N'BANA ')
+INSERT INTO [dbo].[Student_Predmet] ([ID], [Zkratka]) VALUES (5, N'BPC1T')
